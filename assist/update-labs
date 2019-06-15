@@ -1,0 +1,11 @@
+#!/bin/bash
+CONNTEST=`wget -qO- https://joswr1ght.github.io/update-labs/sec504/conntest.txt`
+if [ "$CONNTEST" == "D958F27C-D7BD-490B-B1AF-C2AD25D96E6D" ] ; then
+    wget -qO- https://joswr1ght.github.io/update-labs/sec504/update-labs-e01.sh | bash
+else
+    echo "It looks like your system isn't connected to the Internet. Please see the lab"
+    echo "manual for steps to connect this virtual machine to the network."
+    echo ""
+    echo "If you continue to have trouble, please contact an instructor or email "
+    echo "virtual-labs-support@sans.org. Thank you!"
+fi

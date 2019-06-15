@@ -1,0 +1,45 @@
+#!/bin/bash
+##
+## This script allows the user to update the lab wiki files.
+## Joshua Wright, 3/19/2019
+##
+
+errnotconnected() {
+    echo "" 1>&2
+    echo "It looks like your system isn't connected to the Internet. Please see the lab" 1>&2
+    echo "manual for steps to connect this virtual machine to the network." 1>&2
+    echo "" 1>&2
+    echo "If you continue to have trouble, please contact an instructor or email " 1>&2
+    echo "virtual-labs-support@sans.org. Thank you!" 1>&2
+    exit 1
+}
+
+GITURL="ssh://git@github.com/besimorhino/SANS-504-Student-Wiki"
+BASEDIR="/home/sec504"
+GITDIR="${BASEDIR}/wiki"
+
+if [ $UID -eq 0 ] ; then
+    echo ""
+    echo "Please don't run this script as root. Edit your root shell, then try again."
+    exit 1
+fi
+
+# Make sure the path exists first
+if [[ ! -d "$GITDIR" ]] ; then
+    mkdir -p $BASEDIR || { echo "ERROR: Cannot create the directory $BASEDIR." 1>&2 ; exit 1; }
+    cd $BASEDIR|| { echo "ERROR: Cannot change to the directory $BASEDIR." 1>&2 ; exit 1; }
+    git clone $GITURL wiki >/dev/null || { errnotconnected; exit 1; }
+    git checkout MajorUpdate2019.1 >/dev/null 2>&1 || { errnotconnected; exit 1; }
+fi
+
+
+# Set CWD
+cd $GITDIR || { echo "ERROR: Cannot change to $GITDIR. Remove the directory and try again." 1>&2 ; exit 1; }
+
+echo "Updating lab wiki files... "
+git checkout MajorUpdate2019.1 >/dev/null 2>&1 || { errnotconnected; exit 1; }
+git reset HEAD --hard >/dev/null || { echo "ERROR: Cannot reset lab repository." 1>&2 ; exit 1; }
+git pull >/dev/null 2>&1 || { errnotconnected; exit; }
+
+echo "Done."
+
