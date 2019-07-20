@@ -5,7 +5,7 @@
 
 function Check-NetConnection {
    $ProgressPreference = 'SilentlyContinue'
-   $OnlineCheckResult = Test-NetConnection github.com
+   $OnlineCheckResult = Test-NetConnection google.com
    if ($OnlineCheckResult.PingSucceeded -eq $FALSE) {
       Write-Error "It looks like your system isn't connected to the Internet. Please see the lab"
       Write-Error "manual for steps to connect this virtual machine to the network." 
