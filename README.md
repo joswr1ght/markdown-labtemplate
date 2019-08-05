@@ -52,6 +52,11 @@ SANS-MarkdownLab-Template $ ./publish.sh check
 Required utilities are installed.
 ```
 
+Optional: If you an ubuntu user you can read through the ubuntu_install.sh 
+script and modify as needed. This script has not been thoroughly tested. 
+It should however provide you with the walkthrough for all the modules
+needed on a Ubuntu 18.04+ system.
+
 ### Lab Writing Notes
 
 Write the lab instructions in Markdown format, placing the files in the
@@ -177,6 +182,22 @@ in the `assist/` directory for authors to edit and deploy as they see fit.
   updates
 + `update-labs.ps1` - Windows PowerShell script used to update the SEC504 VM
   (intended for emergencies if something is really broken in the VM)
+
+
+## Running a webserver
+
+There are 2 scripts in the main directory:
+
+Run the following command:
+
+`python serve.py`
+
+This will watch the content directory for changes, the first time it recognizes 
+a change it will run the python http.server. It will also rebuild the wiki 
+directory itself to that you have a fresh copy available to edit. It does this
+with the noprint option so that a PDF is not make each time.
+
+
 
 ## Room for Improvement
 
