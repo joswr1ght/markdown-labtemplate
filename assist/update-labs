@@ -1,7 +1,47 @@
 #!/bin/bash
+
+testconn() {
+    ping -c 3 8.8.8.8 >/dev/null
+    ret=$?
+    if [ $ret -ne 0 ] ; then
+        ping -c 3 4.4.4.4 >/dev/null
+        ret=$?
+        if [ $ret -ne 0 ] ; then
+            echo "Unable to reach Internet sites to confirm connectivity." 1>&2
+            errnotconnected
+        fi
+        fi
+    echo "Connected."
+    return
+}
+
+exiterr() {
+    echo "" 1>&2
+    echo "$1" 1>&2
+    echo "" 1>&2
+    echo "Please contact an instructor or TA for assistance." 1>&2
+    exit -1
+}
+
+errnotconnected() {
+    echo "" 1>&2
+    echo "It looks like your system isn't connected to the Internet. Please see the lab" 1>&2
+    echo "manual for steps to connect this virtual machine to the network." 1>&2
+    echo "" 1>&2
+    echo "If you continue to have trouble, please contact an instructor or email " 1>&2
+    echo "virtual-labs-support@sans.org. Thank you!" 1>&2
+    exit 1
+}
+
+
+### Modified assuming VM uses NAT interface; obtain IP automatically
+sudo service networking stop || exiterr "Unable to stop the networking service."
+sudo dhclient eth0 1>&2 2>/dev/null || exiterr "Unable to obtain a DHCP address."
+testconn # Exits if no connectivity
+
 CONNTEST=`wget -qO- https://joswr1ght.github.io/update-labs/sec504/conntest.txt`
 if [ "$CONNTEST" == "D958F27C-D7BD-490B-B1AF-C2AD25D96E6D" ] ; then
-    wget -qO- https://joswr1ght.github.io/update-labs/sec504/update-labs-e01.sh | bash
+    wget -qO- https://joswr1ght.github.io/update-labs/sec504/update-labs-504.19.1.sh | bash
 else
     echo "It looks like your system isn't connected to the Internet. Please see the lab"
     echo "manual for steps to connect this virtual machine to the network."
@@ -9,3 +49,11 @@ else
     echo "If you continue to have trouble, please contact an instructor or email "
     echo "virtual-labs-support@sans.org. Thank you!"
 fi
+
+
+### Modified assuming VM uses NAT interface; revert to static IP
+sudo killall dhclient
+sudo ifconfig eth0 0.0.0.0
+sudo service networking start || exiterr "Unable to start the networking service. Please reboot."
+
+echo "Done."

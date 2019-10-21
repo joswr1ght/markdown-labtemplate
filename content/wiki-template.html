@@ -4,24 +4,23 @@
     html5up.net | @ajlkn
     Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 
-    Made with love and care by the following people:
+    504 Wiki made with love and care by the following people:
     - Mick Douglas (@BetterSafetyNet) -- Tech lead, Intern Wrangler, InfoSec Innovations
         - Yulli Chong, Intern, InfoSec Innovations
         - Aaron Sawyer, Intern, InfoSec Innovations
     - John Strand (@strandjs) -- Project Lead, BHIS
         - James Maars, Intern BHIS 
         - Derrick Rauch, Intern BHIS
-    - Joshua Wright (@joswr1ght)
 
 -->
 <html>
     <head>
-        <title>SANS SEC000 Lab Wiki</title>
+        <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="/css/main.css" />
     </head>
-    <body>
+    <body onload="manageLocale()">
 
         <!-- Wrapper -->
             <div id="wrapper">
@@ -32,9 +31,14 @@
 
                             <!-- Header -->
                                 <header id="header">
-                                    <a href="index.html" class="logo">SANS SEC000 Lab Wiki</a>
+                                    <a href="index.html" class="logo">SANS SEC 000 Lab Wiki</a>
                                     <ul class="icons">
-                                        <li><a href="https://twitter.com/search?q=SEC000" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                                        <li><select style="width:120px;" id="localeSel" onchange="setLocale()">
+                                            <option value="en">English</option>
+                                            <!-- <option value="jp">日本語</option> -->
+                                            </select></li>
+                                        <li><form><input id="search" maxlength="200" autocomplete="off" type="search" placeholder="Search"><ul class="searchresults"></ul></form></li>
+                                        <li><a href="https://twitter.com/search?q=Sec000" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
                                     </ul>
                                 </header>
 
@@ -49,70 +53,100 @@ $body$
                     <div id="sidebar">
                         <div class="inner">
 
-                            <!-- Search -->
-                            <!-- MBD 20180705 - Search feature is disabled for now.  Will enable it once we get OK
-                                <input type="text" name="query" id="query" placeholder="Search" />
-                                    <button onclick="myFunction()">?</button>
-                                        <script>
-                                        function myFunction() {
-                                                var x = document.getElementById("query").value;
-                                               var res =  idx.search(x);
-                                            alert(res);
-                                       </script>
-                            -->
-
                             <!-- Menu -->
                                 <nav id="menu">
                                     <header class="major">
                                         <h2>Menu</h2>
                                     </header>
                                     <ul>
-                                        <!-- Place "overall" sections here that aren't specific labs per day -->
-                                        <li><a href="index.html">Homepage</a></li>
-                                        <li><a href="Getting-Started.html">Getting Started</a></li>
+                                        <li>
+                                            <a href="/videos/000 Accessing the Lab Wiki/index.html" class="fa fa-youtube-play"></a>
+                                            <a href="index.html">Homepage</a>
+                                        </li>
+                                        <!-- Top-level items here. The fa-youtube-play link is for video content -->
+                                        <!-- 
+                                        <li>
+                                            <a href="/videos/001 Lab Setup/index.html" class="fa fa-youtube-play"></a>
+                                            <a href="Getting-Started.html">Getting Started</a>
+                                        </li>
+                                        -->
                                         <li>
                                             <span class="opener">Book 1:</span>
                                             <ul>
-                                                <!-- Add your day 1 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
-                                                <li><a href="Sample.html">Sample Lab</a></li>
+                                                <!--
+                                                <li>
+                                                    <a href="/videos/100 Windows Cheat Sheet Lab/index.html" class="fa fa-youtube-play"></a>
+                                                    <a href="Windows-Cheat-Sheet.html">Windows Cheat Sheet</a>
+                                                </li>
+                                                -->
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Book 2:</span>
                                             <ul>
-                                                <!-- Add your day 2 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
+                                                <!--
+                                                <li>
+                                                    <a href="/videos/200 OSINT with Spiderfoot/index.html" class="fa fa-youtube-play"></a>
+                                                    <a href="OSINT-with-Spiderfoot.html">OSINT with Spiderfoot</a>
+                                                </li>
+                                                -->
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Book 3:</span>
                                             <ul>
-                                                <!-- Add your day 3 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
+                                                <!--
+                                                <li>
+                                                    <a href="/videos/300 Netcat/index.html" class="fa fa-youtube-play"></a>
+                                                    <a href="The-Many-Uses-of-Netcat.html">Netcat's Many Uses</a>
+                                                </li>
+                                                -->
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Book 4:</span>
                                             <ul>
-                                                <!-- Add your day 4 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
+                                                <!--
+                                                <li>
+                                                    <a href="/videos/400 John the Ripper/index.html" class="fa fa-youtube-play"></a>
+                                                    <a href="John-the-Ripper.html">John the Ripper</a>
+                                                </li>
+                                                -->
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Book 5:</span>
                                             <ul>
-                                                <!-- Add your day 5 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
+                                                <!--
+                                                <li>
+                                                    <a href="/videos/500 Windows Attack Analysis with Rekall/index.html" class="fa fa-youtube-play"></a>
+                                                    <a href="Windows-Attack.html">Windows Attack</a>
+                                                </li>
+                                                -->
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Book 6:</span>
                                             <ul>
-                                                <!-- Add your day 6 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
+                                                <!--
+                                                <li>
+                                                    <a href="Connecting-to-the-Network.html">Connecting to the Network</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Online-CTF-Access.html">Online CTF Access</a>
+                                                </li>
+                                                -->
                                             </ul>
                                         </li>
+                                        <!-- Top-level links can go here too -->
+                                        <!--
+                                        <li>
+                                            <a href="CourseBooks-Links.html">Course Book Links</a>
+                                        </li>
+                                        <li>
+                                            <a href="CourseBooks-Index.html">Course Book Index</a>
+                                        </li>
+                                        -->
                                     </ul>
                                 </nav>
 
@@ -120,7 +154,7 @@ $body$
 
                             <!-- Footer -->
                                 <footer id="footer">
-                                    <p class="copyright">&copy; Your Name Here<br>
+                                    <p class="copyright">&copy; Joshua Wright and Mike Murr<br>
                                         All rights reserved. <br>
                                         Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
                                 </footer>
@@ -138,10 +172,11 @@ $body$
             </div>
 
         <!-- Scripts -->
-            <script src="js/jquery.min.js"></script>
-            <script src="js/skel.min.js"></script>
-            <script src="js/util.js"></script>
-            <script src="js/main.js"></script>
-
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/lunr.js"></script>
+        <script src="/js/skel.min.js"></script>
+        <script src="/js/util.js"></script>
+        <script src="/js/main.js"></script>
+        <script src="/js/lang.js"></script>
     </body>
 </html>

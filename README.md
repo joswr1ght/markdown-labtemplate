@@ -12,8 +12,8 @@ Questions, comments, concerns? Contact josh@wr1ght.net
 ## TL/DR Instructions
 
 Run on Linux, macOS, or WSL. Install Pandoc, Puppeteer, Python 3, and PDFtk.
-Use the examples in `content/` to create your labs. Edit
-`content/wiki-template.html` to specify the order of your lab files by day. Run
+Use the examples in `content/en/` to create your labs. Edit
+`content/en/wiki-template.html` to specify the order of your lab files by day. Run
 `./publish.sh` to generate the HTML files for electronic distribution to
 students and the workbook PDF. Run `./paginate.pdf` to add page numbers to the
 workbook. Run `./clean.sh` to remove all the temporary files, then commit.
@@ -55,14 +55,14 @@ Required utilities are installed.
 ### Lab Writing Notes
 
 Write the lab instructions in Markdown format, placing the files in the
-`content/` directory. See the file `Sample.md` for an example. A few notes
+`content/en/` directory. See the file `Home.md` for an example. A few notes
 on the sample content:
 
 + Code blocks are entered using `<pre>` tags, not the usual triple-backtick
   code fence notation. This is so user input (e.g. the stuff the student types
   can be noted with `<b>` tags, then formatted with CSS to stand out in print
   and the HTML _wiki_ content.
-+ Images for labs should be placed in the `content/pics` directory, following
++ Images for labs should be placed in the `content/en/pics` directory, following
   your preferred naming convention. In the Markdown file, reference the pictures
   using a relative path (e.g. `![Image Alt Text](pics/myimage.png)`).
 + The `index.md` file is the top-level lab page, which should indicate your
@@ -91,30 +91,28 @@ To generate the lab files, change to the top-level directory, then run
 the `./publish.sh` script:
 
 ```
-Desktop $ cd SANS-MarkdownLab-Template/
-SANS-MarkdownLab-Template $ ./publish.sh
-Generating wiki content for online viewing
-HTML Post-processing    ...................................     3/       3
-Generating wiki content for print
-HTML Post-processing    ...................................     3/       3
-Generating PDF files using Puppeteer
-./publish.sh: line 117: kill: (22218) - No such process
-Combining Lab PDF Files
+$ cd markdown-template
+$ ./publish.sh
+Generating HTML content (en)
+Generating search index (en)
+Generating print content (en): .
 ```
 
 This script produces all of the lab HTML files in the `wiki/` directory.
 The contents of this directory can be distributed to students for lab use
-(more on distribution thoughts below). The file `Workbook.pdf` is the
+(more on distribution thoughts below). The file `Workbook-en.pdf` is the
 formatted PDF file is intended to be printed.
 
-The `Workbook.pdf` file is not paginated; run the `./paginate.sh` script
-to modify the PDF file to add page numbers:
+The `Workbook-en.pdf` file is not paginated; run the `./paginate.sh` script
+to modify the PDF file to add page numbers and the copyright footer:
 
 ```
-SANS-MarkdownLab-Template $ ./paginate.sh
-Paginating Workbook.pdf
-....................................................................
-Done: Workbook-paginated.pdf
+$ ./paginate.sh
+Usage: ./paginate.sh <Input PDF> <Output PDF>
+$ ./paginate.sh Workbook-en.pdf Workbook-en-paginated.pdf
+Paginating Workbook-en.pdf
+....
+Done: Workbook-en-paginated.pdf
 ```
 
 ### Removing Temporary Lab Content
@@ -136,6 +134,18 @@ SANS-MarkdownLab-Template $ ./publish.sh noprint
 Generating wiki content for online viewing
 HTML Post-processing    ...................................     3/       3
 Skipping print file production.
+```
+
+## Electronic Wiki Access
+
+In order to accommodate search functionality and more advanced CSS features, it is necessary to serve student Wiki content from a local webserver.
+
+> Important: Wiki content cannot be accessed by using the `file:///` URI. You must include a local web server on the student VMs to deliver lab files.
+
+```
+$ cd wiki
+$ python -m http.server 9001
+Serving HTTP on 0.0.0.0 port 9001 (http://0.0.0.0:9001/) ...
 ```
 
 ## Distributing Lab Files
@@ -177,6 +187,25 @@ in the `assist/` directory for authors to edit and deploy as they see fit.
   updates
 + `update-labs.ps1` - Windows PowerShell script used to update the SEC504 VM
   (intended for emergencies if something is really broken in the VM)
+  
+## Localization Support
+
+The directory structure for lab files allows for localization. The `content/en/`
+directory is the default for content, but files in `content/jp/`' or any other
+language may also be added. Edit `publish.sh` to add additional languages, or
+specify on the command-line:
+
+```
+$ LABLANG="en jp" ./publish.sh
+Generating HTML content (en)
+Generating HTML content (jp)
+Generating search index (en)
+Generating search index (jp)
+Generating print content (en): .
+Generating print content (jp): .
+```
+
+A set of experimental scripts for converting Markdown documents to YAML files that can be localized and them merged back into Markdown files is included in `scripts/`. See Josh if you are interested in using this feature.
 
 ## Room for Improvement
 
