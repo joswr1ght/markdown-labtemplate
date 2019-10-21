@@ -1,6 +1,15 @@
+# -*- mode: gitignore; -*-
 .DS_Store
 Workbook-en.pdf
 wiki
 print
 Workbook.pdf
 Workbook-paginated.pdf
+# - The following hides all emacs + vim + nano temp files
+# - It also hides node_modules and venv just in case
+*~
+\#*\#
+**/node_modules/**
+package-lock.json
+**/venv/**  
+./venv/*
