@@ -1,6 +1,8 @@
 # -*- mode: gitignore; -*-
 .DS_Store
+Workbook-en.pdf
 wiki
+print
 Workbook.pdf
 Workbook-paginated.pdf
 # - The following hides all emacs + vim + nano temp files

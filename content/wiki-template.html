@@ -1,27 +1,12 @@
 <!DOCTYPE HTML>
-<!--
-    Editorial by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-
-    Made with love and care by the following people:
-    - Mick Douglas (@BetterSafetyNet) -- Tech lead, Intern Wrangler, InfoSec Innovations
-        - Yulli Chong, Intern, InfoSec Innovations
-        - Aaron Sawyer, Intern, InfoSec Innovations
-    - John Strand (@strandjs) -- Project Lead, BHIS
-        - James Maars, Intern BHIS 
-        - Derrick Rauch, Intern BHIS
-    - Joshua Wright (@joswr1ght)
-
--->
 <html>
     <head>
-        <title>SANS SEC000 Lab Wiki</title>
+        <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="/css/main.css" />
     </head>
-    <body>
+    <body onload="manageLocale()">
 
         <!-- Wrapper -->
             <div id="wrapper">
@@ -32,9 +17,14 @@
 
                             <!-- Header -->
                                 <header id="header">
-                                    <a href="index.html" class="logo">SANS SEC000 Lab Wiki</a>
+                                    <a href="index.html" class="logo">SANS SEC504 Instructor Guide</a>
                                     <ul class="icons">
-                                        <li><a href="https://twitter.com/search?q=SEC000" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                                        <li><select style="width:120px;" id="localeSel" onchange="setLocale()">
+                                            <option value="en">English</option>
+                                            <!-- <option value="jp">日本語</option> -->
+                                            </select></li>
+                                        <li><form><input id="search" maxlength="200" autocomplete="off" type="search" placeholder="Search"><ul class="searchresults"></ul></form></li>
+                                        <li><a href="https://twitter.com/search?q=Sec504" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
                                     </ul>
                                 </header>
 
@@ -49,78 +39,37 @@ $body$
                     <div id="sidebar">
                         <div class="inner">
 
-                            <!-- Search -->
-                            <!-- MBD 20180705 - Search feature is disabled for now.  Will enable it once we get OK
-                                <input type="text" name="query" id="query" placeholder="Search" />
-                                    <button onclick="myFunction()">?</button>
-                                        <script>
-                                        function myFunction() {
-                                                var x = document.getElementById("query").value;
-                                               var res =  idx.search(x);
-                                            alert(res);
-                                       </script>
-                            -->
-
                             <!-- Menu -->
                                 <nav id="menu">
                                     <header class="major">
                                         <h2>Menu</h2>
                                     </header>
                                     <ul>
-                                        <!-- Place "overall" sections here that aren't specific labs per day -->
-                                        <li><a href="index.html">Homepage</a></li>
-                                        <li><a href="Getting-Started.html">Getting Started</a></li>
                                         <li>
-                                            <span class="opener">Book 1:</span>
-                                            <ul>
-                                                <!-- Add your day 1 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
-                                                <li><a href="Sample.html">Sample Lab</a></li>
-                                            </ul>
+                                            <a href="index.html">Homepage</a>
                                         </li>
                                         <li>
-                                            <span class="opener">Book 2:</span>
-                                            <ul>
-                                                <!-- Add your day 2 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
-                                            </ul>
+                                            <a href="Errata.html">Errata</a>
                                         </li>
                                         <li>
-                                            <span class="opener">Book 3:</span>
-                                            <ul>
-                                                <!-- Add your day 3 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
-                                            </ul>
+                                            <a href="Course-Updates.html">Course Updates</a>
                                         </li>
                                         <li>
-                                            <span class="opener">Book 4:</span>
-                                            <ul>
-                                                <!-- Add your day 4 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
-                                            </ul>
+                                            <a href="Crate-Information.html">Course Crate Information</a>
                                         </li>
                                         <li>
-                                            <span class="opener">Book 5:</span>
-                                            <ul>
-                                                <!-- Add your day 5 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
-                                            </ul>
+                                            <a href="CTF.html">CTF Notes</a>
                                         </li>
                                         <li>
-                                            <span class="opener">Book 6:</span>
-                                            <ul>
-                                                <!-- Add your day 6 labs here, using the HTML extension for the MD file -->
-                                                <li><a href="Sample.html">Sample Lab</a></li>
-                                            </ul>
+                                            <a href="Compressed-Delivery.html">Compressed Delivery Plan</a>
                                         </li>
                                     </ul>
                                 </nav>
 
 
-
                             <!-- Footer -->
                                 <footer id="footer">
-                                    <p class="copyright">&copy; Your Name Here<br>
+                                    <p class="copyright">&copy; Joshua Wright and Mike Murr<br>
                                         All rights reserved. <br>
                                         Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
                                 </footer>
@@ -138,10 +87,11 @@ $body$
             </div>
 
         <!-- Scripts -->
-            <script src="js/jquery.min.js"></script>
-            <script src="js/skel.min.js"></script>
-            <script src="js/util.js"></script>
-            <script src="js/main.js"></script>
-
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/lunr.js"></script>
+        <script src="/js/skel.min.js"></script>
+        <script src="/js/util.js"></script>
+        <script src="/js/main.js"></script>
+        <script src="/js/lang.js"></script>
     </body>
 </html>

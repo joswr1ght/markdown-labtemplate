@@ -220,3 +220,27 @@ viewable size of the image can be large or small. It would be much
 better to have all of the _typeface_ in screenshots the same size for
 each lab, automatically adjusting the image width appropriately. I don't
 know CSS well enough to make that happen.
+
+
+### Using the server
+
+To use the server please note the following instructions that have been tested
+on ubuntu:
+
+```$ python3 -m venv ./env```
+
+```$ source ./env/bin/activate```
+
+```$ pip install -r requirements.txt```
+
+From this point if you make any changes to a file in the content directory it
+will do the following:
+
+```run publish noprint```
+```run server.sh```
+
+The server is listening on port 8888, modify server.sh to change this behavior.
+One item of note. If you have files that are orphaned in use, for example:
+
+Files that start with # or .# or \# or end with ~ they will cause errors. 
+You may have to manually delete these.

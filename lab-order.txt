@@ -1,0 +1,9 @@
+# Edit this file to add additional labs to the printed material in the order
+# they should appear in the course, one per line.
+# All files should include the .md or .html filename
+# This list usually starts with index.md (the wiki landing page)
+index.md
+Errata.md
+Course-Updates.md
+Crate-Information.md  
+CTF.md

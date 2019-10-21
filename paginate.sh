@@ -1,19 +1,28 @@
 #!/bin/sh
-echo "Paginating Workbook.pdf"
 if [ ! -f "paginate.sh" ] ; then
     echo "Please run ./paginate.sh from the main repo directory."
     exit
 fi
 
+if [ -z "$1" ] || [ -z "$2" ] ; then
+    echo "Usage: ./paginate.sh <Input PDF> <Output PDF>"
+    exit
+fi
+
 
 # we'll hide the work in a temporary directory
+echo "Paginating $1"
 mkdir tmp_num
+if [ $? -ne 0 ] ; then
+    echo "Error creating temporary directory tmp_num, please correct then try again."
+    exit
+fi
 cp content/pdfassist/page-numbers.pdf tmp_num/.
-cp Workbook.pdf tmp_num/.
+cp $1 tmp_num/.
 cd tmp_num/
 
 # burst Workbook into its component pages and extract total pages
-pdftk Workbook.pdf burst output book_%04d.pdf 
+pdftk $1 burst output book_%04d.pdf 
 cat doc_data.txt | grep NumberOfPages > nu_pages.txt
 nu_pages=`awk '{print $2}' nu_pages.txt`
 
@@ -49,7 +58,7 @@ echo
 
 
 # create the new PDF file and move it to the original directory
-pdftk  fin_*.pdf cat output ../Workbook-paginated.pdf
+pdftk  fin_*.pdf cat output ../$2
 rm -fr ../tmp_num
 
-echo "Done: Workbook-paginated.pdf"
+echo "Done: $2"
