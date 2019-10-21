@@ -144,11 +144,11 @@ for lang in $LANGUAGES; do
     ORDER=$(getlaborder)
 
     ### Convert HTML files to PDF
-    python3 -m http.server --bind 127.0.0.1 8000 >/dev/null 2>&1 &
+    python3 -m http.server --bind 127.0.0.1 8999 >/dev/null 2>&1 &
     SERVPID=$!
     for lab in $ORDER; do
         echo -n "."
-        puppeteer-pdf "http://127.0.0.1:8000/$lab" --path $lab.pdf
+        puppeteer-pdf "http://127.0.0.1:8999/$lab" --path $lab.pdf
     done
     echo
     kill $SERVPID >/dev/null 2>&1

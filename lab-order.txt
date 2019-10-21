@@ -3,3 +3,7 @@
 # All files should include the .md or .html filename
 # This list usually starts with index.md (the wiki landing page)
 index.md
+Errata.md
+Course-Updates.md
+Crate-Information.md  
+CTF.md

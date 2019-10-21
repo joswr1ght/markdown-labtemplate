@@ -1,106 +1,25 @@
 # Home
 
-## Welcome to the SANS SEC504 Lab Wiki!
+## Welcome to the SANS SEC504 Instructor Guide!
 
-This wiki is your guide to lab exercises in SANS SEC504. In order to keep labs
-current, to make them more accessible (cut and paste!), and to present the
-steps in color with rich context, we present the material here in HTML format.
-You will also will get a hard copy of the printed materials to keep as an
-heirloom (and to bring into an exam center when you take the GIAC exam).
+This instructor guide is designed to provide a central location for supporting
+SANS SEC504 instructors when teaching class. Check back here for information
+on [Course Updates](Course-Updates.md), [Errata](Errata.md), and other
+useful resources.
 
-> This lab wiki is a work in progress, and is frequently revised by the course
-> authors. This is beneficial to all, since you continue to get updates to
-> lab material as we improve the quality of the exercises, correct typos, and
-> add new exercises.
+## Slack Space
 
-## Accessing the Digital Edition of the Lab Wiki
+If you want to connect with other SEC504 instructors, consider joining the
+[Slack space](https://sec504team.slack.com/). [Email
+Josh](mailto:jwright@hasborg.com) and we'll add you to the Slack space.
 
-To access the digital edition of the lab wiki from the Slingshot Linux VM, open
-the Firefox browser. The home page will display this text, and allow you to
-navigate to the course lab exercises.
+Not really into Slack? No problem. Dig into the resources available on this site
+and always feel free to reach out to Josh to Mike.
 
-Similarly, you can access the digital edition of the lab wiki from the class
-Windows 10 VM as well. Open the Chrome browser and the home page will display
-this text.
+- Joshua Wright, [jwright@willhackforsushi.com](mailto:jwright@willhackforsushi.com), +1-401-524-2911
+- Mike Murr, [mike@socialexploits.com](mike@socialexploits.com), +1-805-338-9977
 
-## Updating the Lab Wiki – Linux
-
-To update the lab wiki on the Linux VM, make sure your Slingshot Linux VM
-distributed with the class material is connected to the internet. See the
-[Connecting to the Network](Connecting-to-the-Network.md) guide for
-instructions.
-
-Once connected, open a terminal prompt and run the following command:
-
-<pre>
-sec504@slingshot:~$ <b>update-wiki</b>
-</pre>
-
-That's it! With this one step you will always have the most current lab materials.
-
-## Updating the Lab Wiki – Windows
-
-To update the lab wiki on the Windows 10 VM, make sure your Windows 10 VM
-distributed with the class material is connected to the internet. See the
-[Connecting to the Network](Connecting-to-the-Network.md) guide for
-instructions.
-
-Once connected, open a PowerShell Prompt as an Administrator and run the following command:
-
-<pre>
-PS C:\WINDOWS\system32> <b>update-wiki.ps1</b>
-</pre>
-
-> Note: You must open a PowerShell Prompt as an Administrator to update the wiki content, _not a Command Prompt_!
-
-That's it! With this one step you will always have the most current lab materials.
-
-## Conventions
-
-The following typographical conventions are used throughout the labs:
-
-- *Italic*
-  - Indicates new terms and items of emphasis.
-- `Constant width`
-  - Used for terminal output and within paragraphs to refer to tools or other elements such as variables, function
-names, statements, keywords, etc.
-- **\|** (vertical bar)
-  - The vertical bar is used to indicate steps necessary for navigating through menus (Edit \| Paste)
-
-Code blocks are used to denote output from tools. Content that is bold represents commands you type.
-For example:
-
-<pre>
-# <b>run_this_command</b>
-output from the tool
-</pre>
-
-In some cases, the commands you type will call for information that you supply (e.g., that we don't
-know). In these cases, the content that you supply is noted in italics: <i>`yourinput`</i>. 
-Replace _yourinput_ with the information you supply as described in the exercise.
-
-> This icon signifies a tip, suggestion, warning, or a general note.
-
-## Video Walkthrough
-
-Watch the accompanying [video instructions](/videos/000%20Accessing%20the%20Lab%20Wiki/) for additional information.
-
-[![Video Walkthrough Screen Shot](/videos/000%20Accessing%20the%20Lab%20Wiki/000%20Accessing%20the%20Lab%20Wiki.png)](/videos/000%20Accessing%20the%20Lab%20Wiki/)
-
-## Course and Lab Feedback
-
-We are always excited to hear your feedback on the course materials. Is there a bug we need to squash? Do you have a
-suggestion for a new awesome tool that we just ***have*** to see? Please let us know.
-
-https://www.sec504.org/feedback
-
-You can also reach out to Josh or Mike directly:
-
-- Joshua Wright – jwright@willhackforsushi.com
-- Mike Murr – mmurr@codeforensics.net
-
-Thank you!!
 
 ![504 Challenge Coin](pics/5041.png)
 
-_Update: 20191010-002_
+_Update: 20191021-001_
