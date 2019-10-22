@@ -36,9 +36,9 @@ If needed, the CTF VMs can be downloaded here from the SEC504 S3 bucket:
 + Click open Connection and change drop down from FTP to Amazon S3
 + Enter the following Access Key ID and password:
 
-> Access Key ID: AKIAI7SEA3NKL3PYC7NA
+> Access Key ID: REDACTED
 
-> Password: E0HHAKb4HAsFuB9vjY7nobMYhMRrcw1nMtA5YOsD
+> Password: REDACTED
 
 ## Returning Your Crate
 
