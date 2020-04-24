@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Accessing the Lab Wik.</title>
+<link rel="stylesheet" href="/css/normalize.min.css">
+<link rel='stylesheet' href='/css/plyr.css'>
+<style>
+.container {
+    margin: 50px auto;
+    max-width: 800px;
+}
+</style>
+
+<script src='/js/plyr3.js'></script>
+<script>
+    window.console = window.console || function(t) {};
+</script>
+</head>
+
+<body translate="no" style="background-color:#000000">
+    <div class="container">
+        <video controls crossorigin playsinline poster="Getting-Started.png">
+            <source src="Getting-Started.webm" type="video/webm" size="1080">
+            <track kind="captions" label="English" srclang="en-US" src="Getting-Started.vtt" default>
+        </video>
+    </div>
+    <script id="rendered-js">
+        const player = new Plyr('video', { captions: { active: false }, iconUrl: "/css/plyr.svg" });
+        window.player = player;
+    </script>
+
+</body>
+</html>

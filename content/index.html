@@ -4,7 +4,13 @@
         <title>SEC504 Lab Wiki</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <script src="js/lang.js"></script>
+<!--        <link rel="stylesheet" href="/css/main.css" />
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/lunr.js"></script>
+        <script src="/js/skel.min.js"></script>
+        <script src="/js/util.js"></script>
+        <script src="/js/main.js"></script> -->
+        <script src="/js/lang.js"></script>
 <script>
 // Get the locale cookie; if not set default to en.
 var locale = getCookie("locale");
@@ -12,7 +18,7 @@ if (locale !== null) {
     locale="en";
     setCookie("locale", locale, 30);
 }
-document.location=locale + "/";
+document.location="/" + locale + "/";
 </script>
     </head>
     <body>

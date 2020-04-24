@@ -1,0 +1,394 @@
+﻿WEBVTT
+
+1
+00:00:00.140 --> 00:00:02.240
+<v Joshua>Hi, this is Joshua Wright.</v>
+
+2
+00:00:02.240 --> 00:00:05.050
+In this video we'll look through some of the directions
+
+3
+00:00:05.050 --> 00:00:09.160
+to access and make the most of the Lab Wiki system.
+
+4
+00:00:09.160 --> 00:00:12.060
+In this course you've received a printed workbook
+
+5
+00:00:12.060 --> 00:00:13.790
+that has all of the lab directions
+
+6
+00:00:13.790 --> 00:00:16.280
+for everything that we're going to do in the course.
+
+7
+00:00:16.280 --> 00:00:18.880
+You also have access to these same directions
+
+8
+00:00:18.880 --> 00:00:21.580
+in the form of what we call the Lab Wiki,
+
+9
+00:00:21.580 --> 00:00:24.870
+which is the default home page on both the Linux
+
+10
+00:00:24.870 --> 00:00:28.480
+and the Windows virtual machine web browsers.
+
+11
+00:00:28.480 --> 00:00:31.190
+I'm going to first start with the Linux virtual machine,
+
+12
+00:00:31.190 --> 00:00:34.000
+I already have that started here.
+
+13
+00:00:34.000 --> 00:00:36.513
+I'm going to full screen my browser window.
+
+14
+00:00:38.000 --> 00:00:39.360
+And then I'm going to open
+
+15
+00:00:39.360 --> 00:00:42.053
+the Firefox browser on the desktop.
+
+16
+00:00:43.040 --> 00:00:45.290
+You'll see that when you open the browser
+
+17
+00:00:45.290 --> 00:00:48.440
+it defaults to the home page which is the Lab Wiki,
+
+18
+00:00:48.440 --> 00:00:49.670
+with all of the directions,
+
+19
+00:00:49.670 --> 00:00:51.260
+and the same content that's used
+
+20
+00:00:51.260 --> 00:00:53.280
+to make the printed workbook.
+
+21
+00:00:53.280 --> 00:00:54.720
+There are some extra features here
+
+22
+00:00:54.720 --> 00:00:58.241
+such as easy navigation to the different lab exercises.
+
+23
+00:00:58.241 --> 00:01:02.720
+The hamburger menu here can hide or open
+
+24
+00:01:02.720 --> 00:01:05.623
+that navigation menu as needed.
+
+25
+00:01:05.623 --> 00:01:07.174
+There's also a search feature
+
+26
+00:01:07.174 --> 00:01:09.250
+where you can type in any string,
+
+27
+00:01:09.250 --> 00:01:11.380
+and it will show you matching lab exercises
+
+28
+00:01:11.380 --> 00:01:12.823
+that include that keyword.
+
+29
+00:01:15.440 --> 00:01:18.010
+And then we have this home page,
+
+30
+00:01:18.010 --> 00:01:21.730
+which shows you the beginning directions, conventions,
+
+31
+00:01:21.730 --> 00:01:25.560
+and the latest version with a datestamp down here
+
+32
+00:01:25.560 --> 00:01:28.690
+for the version of the lab instructions
+
+33
+00:01:28.690 --> 00:01:29.660
+that you're looking at.
+
+34
+00:01:29.660 --> 00:01:32.760
+And one of the benefits of having this electronic
+
+35
+00:01:32.760 --> 00:01:34.850
+is that you can move the browser window
+
+36
+00:01:34.850 --> 00:01:36.000
+to the side of your screen
+
+37
+00:01:36.000 --> 00:01:37.480
+so you can look at it while you work on
+
+38
+00:01:37.480 --> 00:01:39.910
+the lab exercise steps.
+
+39
+00:01:39.910 --> 00:01:43.320
+You can also update the lab exercise steps
+
+40
+00:01:43.320 --> 00:01:47.450
+by running the update-wiki command shown here.
+
+41
+00:01:47.450 --> 00:01:52.450
+When prompted enter the sec504 user password, sec504.
+
+42
+00:01:52.700 --> 00:01:54.410
+The virtual machine will go out,
+
+43
+00:01:54.410 --> 00:01:56.400
+download the latest lab files
+
+44
+00:01:56.400 --> 00:01:59.970
+with any typos, or new lab directions that we've added,
+
+45
+00:01:59.970 --> 00:02:04.770
+and then complete and obtain the latest lab directions.
+
+46
+00:02:04.770 --> 00:02:07.040
+Now after your instructor's advice,
+
+47
+00:02:07.040 --> 00:02:11.070
+he or she may also tell you to run update-labs.
+
+48
+00:02:11.070 --> 00:02:14.310
+That will make changes to the virtual machine
+
+49
+00:02:14.310 --> 00:02:15.900
+but you don't need to do that
+
+50
+00:02:15.900 --> 00:02:18.023
+unless advised by your instructor.
+
+51
+00:02:19.360 --> 00:02:20.960
+Similar commands are available
+
+52
+00:02:20.960 --> 00:02:23.230
+on the Windows virtual machine as well.
+
+53
+00:02:23.230 --> 00:02:25.730
+Again here if I open the default web browser
+
+54
+00:02:25.730 --> 00:02:27.133
+which is Google Chrome,
+
+55
+00:02:28.310 --> 00:02:30.780
+the home page will show you all of the lab directions
+
+56
+00:02:30.780 --> 00:02:33.510
+with the same content and the same features.
+
+57
+00:02:33.510 --> 00:02:37.043
+Down here we see the version for the lab exercises.
+
+58
+00:02:38.210 --> 00:02:39.780
+I'm going to just move this off
+
+59
+00:02:39.780 --> 00:02:41.580
+to the right-hand side of my screen,
+
+60
+00:02:43.600 --> 00:02:47.800
+and from Windows we can download the latest content as well.
+
+61
+00:02:47.800 --> 00:02:49.750
+Here we see the command is slightly different,
+
+62
+00:02:49.750 --> 00:02:52.790
+it's update-wiki.ps1.
+
+63
+00:02:52.790 --> 00:02:54.780
+So I'm going to open a PowerShell prompt
+
+64
+00:02:54.780 --> 00:02:57.800
+as an administrator, right-clicking on the PowerShell icon,
+
+65
+00:02:57.800 --> 00:03:00.850
+and then choosing Run as administrator,
+
+66
+00:03:00.850 --> 00:03:02.520
+and from the PowerShell prompt
+
+67
+00:03:02.520 --> 00:03:05.733
+I'm going to run update-wiki.ps1.
+
+68
+00:03:07.360 --> 00:03:09.870
+Like the Linux VM, the Windows VM will go online
+
+69
+00:03:09.870 --> 00:03:12.110
+and download the latest lab content.
+
+70
+00:03:12.110 --> 00:03:14.180
+You may be prompted if you want your machine
+
+71
+00:03:14.180 --> 00:03:15.070
+to be discoverable.
+
+72
+00:03:15.070 --> 00:03:17.322
+I'm gonna say no there.
+
+73
+00:03:17.322 --> 00:03:18.593
+And after a couple of seconds
+
+74
+00:03:18.593 --> 00:03:21.090
+you'll have the latest lab content delivered
+
+75
+00:03:21.090 --> 00:03:23.593
+to the Windows virtual machine as well.
+
+76
+00:03:32.140 --> 00:03:33.802
+Again your instructor may advise you
+
+77
+00:03:33.802 --> 00:03:38.802
+to run the update-labs.ps1 script as well,
+
+78
+00:03:39.100 --> 00:03:41.770
+which will download and make any changes necessary
+
+79
+00:03:41.770 --> 00:03:45.200
+for their virtual machine to improve lab exercises
+
+80
+00:03:45.200 --> 00:03:48.210
+or to troubleshoot or fix any bugs that we experience.
+
+81
+00:03:48.210 --> 00:03:49.760
+You don't need to run this command
+
+82
+00:03:49.760 --> 00:03:52.023
+unless you're advised to by your instructor.
+
+83
+00:03:54.610 --> 00:03:55.970
+That's it with those simple commands
+
+84
+00:03:55.970 --> 00:03:58.210
+you'll have the latest lab exercise content
+
+85
+00:03:58.210 --> 00:04:01.070
+as you work through the lab exercises.
+
+86
+00:04:01.070 --> 00:04:02.290
+If I refresh my browser
+
+87
+00:04:02.290 --> 00:04:04.840
+you'll see that the version has changed,
+
+88
+00:04:04.840 --> 00:04:07.120
+indicating that we have the latest version
+
+89
+00:04:07.120 --> 00:04:09.820
+of the lab exercise steps.
+
+90
+00:04:09.820 --> 00:04:12.242
+You can update the wiki as often as desired.
+
+91
+00:04:12.242 --> 00:04:15.360
+Generally following the advice of your instructor
+
+92
+00:04:15.360 --> 00:04:17.514
+or if you've worked on lab exercises
+
+93
+00:04:17.514 --> 00:04:21.040
+and you may have encountered a bug, or a typo,
+
+94
+00:04:21.040 --> 00:04:23.330
+or possibly, are looking for clarification.
+
+95
+00:04:23.330 --> 00:04:24.680
+You can run update-wiki
+
+96
+00:04:24.680 --> 00:04:27.140
+to obtain the very latest information
+
+97
+00:04:27.140 --> 00:04:31.600
+as we continue to refine and improve the lab directions.
+
+98
+00:04:31.600 --> 00:04:34.453
+That's it for this video set, nice work!
+

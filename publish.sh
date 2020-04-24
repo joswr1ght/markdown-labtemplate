@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set this to your desired author footer for the print PDF generation
+AUTHORFOOTER="© 2020, Specify Your Name In Publish.sh"
+
 getlaborder() {
     grep -v '^#' ../lab-order.txt | paste -s -d ' ' - | sed 's/\.md /\.html /g;s/\.md$/\.html/' 
 }
@@ -11,11 +14,12 @@ cmdexists() {
     return 1
 }
 
-if [ -z "$LABLANG" ] ; then
+# Allow the env var WIKILANG to override the languages specified
+if [ -z "$WIKILANG" ] ; then
     #LANGUAGES="en jp"
     LANGUAGES="en"
 else
-    LANGUAGES=$LABLANG
+    LANGUAGES=$WIKILANG
 fi
 
 REQUIREDUTILS="pandoc bash python3 puppeteer-pdf pdftk awk grep sed"
@@ -76,16 +80,14 @@ done
 # The default markdown file in Home.md, used for creating the title in the HTML output.
 # To make the Home.md -> Home.html file the default for the page, it is renamed to index.html
 cd wiki
+for lang in $LANGUAGES; do
+  mv $lang/Home.html $lang/index.html
+done
 
 #Open every newly created HTML file
 for i in */*.html ; do
-    awk '
-        /<img src=/,/\/p>/       {firstinsert=index($0, " src=");
-        secondinsert=index($0, " alt=");
-        print substr($0, 1, firstinsert)  " class=\"myImg\" " substr($0, firstinsert, secondinsert-firstinsert) " style=\"width:100%;max-width:600px\" " substr($0, secondinsert, length($0)-secondinsert+1);
-                                        next;}
-                {print $0;}
-        ' $i > $i.bak
+    # Add onclick to each img using alt= as an anchor; ignore lines with /videos/
+    sed '/\/videos\//!s/alt=/onclick="window.open(this.src)" alt=/' $i > $i.bak
     mv "$i.bak" "$i"
     # Fixup markdown href's to point to HTML files
     sed 's/.md"/.html"/g' $i > $i.bak
@@ -120,17 +122,10 @@ for lang in $LANGUAGES; do
     done
 
     cd ../../print
+    mv Home.html index.html
 
     # Open every newly created HTML file
     for i in *.html ; do
-            awk '
-            /<img src=/,/\/p>/       {firstinsert=index($0, " src=");
-            secondinsert=index($0, " alt=");
-            print substr($0, 1, firstinsert)  " class=\"myImg\" " substr($0, firstinsert, secondinsert-firstinsert) " style=\"width:100%;max-width:600px\" " substr($0, secondinsert, length($0)-secondinsert+1);
-                                            next;}
-                    {print $0;}
-            ' $i > $i.bak
-            mv "$i.bak" "$i"
             # Fixup markdown href's to point to HTML files. sed -i is inconsistent on macOS and Linux so we `mv`
             sed 's/.md"/.html"/g' $i > $i.bak
             mv "$i.bak" "$i"
@@ -143,12 +138,24 @@ for lang in $LANGUAGES; do
     COUNTER=1
     ORDER=$(getlaborder)
 
-    ### Convert HTML files to PDF
-    python3 -m http.server --bind 127.0.0.1 8999 >/dev/null 2>&1 &
+    ### Convert HTML files to PDF, adding footer with lab title
+    python3 -m http.server --bind 127.0.0.1 8000 >/dev/null 2>&1 &
     SERVPID=$!
     for lab in $ORDER; do
         echo -n "."
-        puppeteer-pdf "http://127.0.0.1:8999/$lab" --path $lab.pdf
+        puppeteer-pdf "http://127.0.0.1:8000/$lab" --path $lab.pdf
+        # Create a new version of the $lab.pdf with the appropriate footer
+        MD="../content/en/`echo $lab | sed 's/\.html//'`.md"
+        echo $MD | grep index.md >/dev/null
+        if [ $? -eq 0 ] ; then
+            TITLE="Lab Introduction"
+        else
+            TITLE=`head -1 $MD | sed 's/# //'`
+        fi
+        ../scripts/pdffooter.py $lab.pdf "$TITLE — $AUTHORFOOTER" $lab-footer.pdf
+        pdftk $lab.pdf background $lab-footer.pdf output $lab-merged.pdf
+        mv $lab-merged.pdf $lab.pdf
+        rm $lab-footer.pdf
     done
     echo
     kill $SERVPID >/dev/null 2>&1
@@ -159,6 +166,6 @@ for lang in $LANGUAGES; do
     # Combining Lab PDF Files
     pdftk $PDFFILES cat output ../Workbook-$lang.pdf
 
-    cd .. # Back to content/
+    cd .. # Back to markdown-labtemplate
 
 done
